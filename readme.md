@@ -2,6 +2,9 @@
 
 Named after the musician [Robert Fripp](https://en.wikipedia.org/wiki/Robert_Fripp), who experimented with this kind of things with Brian Eno in pre-computer times, Fripp is a simple audio looper that allows you to build music layer by layer. It is Linux-compatible and does not depend on Jack.
 
+It looks like this:
+![screenshot of Fripp](screenshot.png)
+
 ## Features
 * Fripp uses the `sounddevice` library to handle audio, so it should be cross-platform, although I only tested it on Linux.
 * As far as I know, it's the only looper that works on Linux and does not depend on Jack. This is the reason why I wrote it, since I didn't want to spend time configuring Jack.
@@ -66,6 +69,7 @@ To save the output, use the -o parameter:
 ./fripp.py -o darude_sandstorm.flac
 ```
 
+Press the spacebar to mute/unmute the input.
 You should use headphones to avoid a feedback catastrophe. Keep in mind that I put this together by trial and error until it worked for me, I know nothing about computers and I'm not responsible if it crashes during a gig.
 
 ## License
