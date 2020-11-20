@@ -9,9 +9,9 @@ It looks like this:
 * Fripp uses the `sounddevice` library to handle audio, so it should be cross-platform, although I only tested it on Linux.
 * As far as I know, it's the only looper that works on Linux and does not depend on Jack. This is the reason why I wrote it, since I didn't want to spend time configuring Jack.
 * Feedback can be adjusted, so the oldest layers slowly decay over time.
-* You can record to the entire loop, or to any subdivision of it (for example, something that is repeated on every bar). Any subdivision works, if you want to experiment with polyrhythms, you can.
+* You can record to the entire loop, or to any subdivision of it (for example, if you want the thing you're playing to be repeated on every bar). Any subdivision works, if you want to experiment with polyrhythms, you can.
 * Define the tempo, number of bars and time signature as command-line arguments, or in the config.py file.
-* Generate a metronome track, or use a sound file as a backing track (for example, a drum loop) . It will loop over the file and let you record on top of it.
+* Generate a metronome track, or use a sound file as a backing track (for example, a drum loop) . It will loop over the file and let you record on top of it. Flac files definitely work. Mp3 may or may not work (I didn't try).
 * Save the output to a file.
 
 ## Installation
@@ -22,26 +22,28 @@ You will need the following python libraries:
 - [pysimplegui](https://pysimplegui.readthedocs.io/en/latest/)
 - [soundfile](https://pypi.org/project/SoundFile/)
 
-## Usage
-First, you'll need to find out the number of your sound card. Run this to get a list:
-
-```bash
-python -m sounddevice
-```
-
-Any parameter, including tempo, loop duration etc. can be specified by editing the `config.py` file. You can also define the default sound card, latency and other stuff there.
+Then download this repository and run the `fripp.py` script.
 
 ```bash
 ./fripp.py
 ```
 
-If the sound is clipped, or you get "underrun" error messages, you should use an external sound card (or an USB mic). This is probably required for real-time audio processing anyways.
+You'll need to find out the number of your sound card. Run this to get a list:
 
-Alternatively, use the -d parameter to set the sound card:
+```bash
+python -m sounddevice
+```
+Then set the right number either in the `config.py` file, or with the -d parameter:
 
 ```bash
 ./fripp.py -d 12
 ```
+
+If the sound is clipped, or you get "underrun" error messages, you should use an external sound card or a USB mic. This is probably required for real-time audio processing, unfortunately.
+
+## Usage
+Any parameter, including tempo, loop duration etc. can be specified by editing the `config.py` file. You can also define the default sound card, latency and other stuff there.
+
 
 Adjust latency with -l (in ms):
 
