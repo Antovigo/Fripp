@@ -7,11 +7,11 @@ It looks like this:
 
 ## Features
 * Fripp uses the `sounddevice` library to handle audio, so it should be cross-platform, although I only tested it on Linux.
-* As far as I know, it's the only looper that works on Linux and does not depend on Jack. This is the reason why I wrote it, since I didn't want to spend time configuring Jack.
-* Feedback can be adjusted, so the oldest layers slowly decay over time.
-* You can record to the entire loop, or to any subdivision of it (for example, if you want the thing you're playing to be repeated on every bar). Any subdivision works, if you want to experiment with polyrhythms, you can.
+* AFAIK, it's the only looper that works on Linux and does not depend on Jack. This is the reason why I wrote it, since I didn't want to spend time configuring Jack.
+* Adjust the feedback, so the oldest layers slowly decay over time, just like in [Robert Fripp's setup](https://invidious.tube/watch?v=IVktJ3Ha4AI).
+* Record to the entire loop, or to any subdivision of it (for example, if you want the thing you're playing to be repeated on every bar). Any subdivision works, so you can experiment with weird polyrhythms.
 * Define the tempo, number of bars and time signature as command-line arguments, or in the config.py file.
-* Generate a metronome track, or use a sound file as a backing track (for example, a drum loop) . It will loop over the file and let you record on top of it. Flac files definitely work. Mp3 may or may not work (I didn't try).
+* Generate a metronome track, or use a sound file as a backing track (for example, a drum loop) . It will loop over the file and let you record on top of it. Flac files definitely work. Mp3 may or may not work (I haven't tried).
 * Save the output to a file.
 
 ## Installation
@@ -62,7 +62,7 @@ This would play a loop of 8 bars in 4/4 at 110 bpm.
 To use a sound file as a backing track instead of the metronome, use the -i parameter:
 
 ```bash
-./fripp.py -i funk100bpm.flac
+./fripp.py -i "Backing tracks/funk100bpm.flac"
 ```
 
 To save the output, use the -o parameter:
@@ -71,7 +71,16 @@ To save the output, use the -o parameter:
 ./fripp.py -o darude_sandstorm.flac
 ```
 
+Input gain is self-explanatory. 
+Back volume is the volume of the metronome, or of the backing track sample if you provided one with the -i option. 
+Feedback is the ratio of volume decay everytime the loop is played.
+Subdivide is the fraction of the whole loop that you are recording to. 
+If it's set to 1, the input will be recorded once per loop, as in a regular looper. If it's set to an integer n, it will be recorded n evenly-spaced times across the loop (for example, once per bar). 
+
 Press the spacebar to mute/unmute the input.
+The undo button will come back to the previous version of the loop. Essentially, just press the undo button until the part you want to get rid off is gone.
+The clear button erases the current loop and replaces it with silence.
+
 You should use headphones to avoid a feedback catastrophe. Keep in mind that I put this together by trial and error until it worked for me, I know nothing about computers and I'm not responsible if it crashes during a gig.
 
 ## License
