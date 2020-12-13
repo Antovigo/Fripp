@@ -23,7 +23,7 @@ def sound_processing(backing_track, samplerate):
     # Start the looping stream
     s = sd.Stream(channels=(input_channels,2), blocksize=config.blocksize)
     s.start()
-    time.sleep(1) # To prevent an initial cracking sound
+    time.sleep(1) # Prevent the initial cracking sound
 
     while controls.running:    
         # Calculate indices of the slice
