@@ -44,6 +44,7 @@ If the sound is clipped, or you get "underrun" error messages, you should use an
 ## Usage
 Any parameter, including tempo, loop duration etc. can be specified by editing the `config.py` file. You can also define the default sound card, latency and other stuff there.
 
+### Command-line options
 
 Adjust latency with -l (in ms):
 
@@ -68,19 +69,27 @@ To use a sound file as a backing track instead of the metronome, use the -i para
 Use the -o parameter to define the filenames that will be used when saving the current loop or the whole output (don't specify an extension, it will be .flac).
 
 ```bash
-./fripp.py -o darude_sandstorm.flac
+./fripp.py -o darude_sandstorm
 ```
 
+### Buttons and switches
+
 Input gain is self-explanatory. 
+
 Back volume is the volume of the metronome, or of the backing track sample if you provided one with the -i option. 
+
 Feedback is the ratio of volume decay everytime the loop is played.
+
 Subdivide is the fraction of the whole loop that you are recording to. 
 If it's set to 1, the input will be recorded once per loop, as in a regular looper. If it's set to an integer n, it will be recorded n evenly-spaced times across the loop (for example, once per bar). 
 
 Press the spacebar to mute/unmute the input.
-The "Undo" button will come back to the previous version of the loop. Essentially, just press the undo button until the part you want to get rid off is gone.
-The "Clear" button erases the current loop and replaces it with silence.
-The "Save" button will write a flac file containing just the current loop. If you save various stages of the loop, you can then assemble them in any audio editor, or use them later as backing tracks with the -i option. If you did not specific a filename with -o, a timestamp will be used instead.
+
+The `Undo` button will come back to the previous version of the loop. Essentially, just press the undo button until the part you want to get rid off is gone.
+
+The `Clear` button erases the current loop and replaces it with silence.
+
+The `Save` button will write a flac file containing just the current loop. If you save various stages of the loop, you can then assemble them in any audio editor, or use them later as backing tracks with the -i option. If you did not specific a filename with -o, a timestamp will be used instead. A number is added at the end of the filename, so you can save as many loops as you want within a session.
 
 To save the whole output to a soundfile, set the `save_all` option to True in `config.py`. 
 
