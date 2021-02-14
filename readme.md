@@ -65,7 +65,7 @@ To use a sound file as a backing track instead of the metronome, use the -i para
 ./fripp.py -i "Backing tracks/funk100bpm.flac"
 ```
 
-To save the output, use the -o parameter:
+Use the -o parameter to define the filenames that will be used when saving the current loop or the whole output (don't specify an extension, it will be .flac).
 
 ```bash
 ./fripp.py -o darude_sandstorm.flac
@@ -78,8 +78,11 @@ Subdivide is the fraction of the whole loop that you are recording to.
 If it's set to 1, the input will be recorded once per loop, as in a regular looper. If it's set to an integer n, it will be recorded n evenly-spaced times across the loop (for example, once per bar). 
 
 Press the spacebar to mute/unmute the input.
-The undo button will come back to the previous version of the loop. Essentially, just press the undo button until the part you want to get rid off is gone.
-The clear button erases the current loop and replaces it with silence.
+The "Undo" button will come back to the previous version of the loop. Essentially, just press the undo button until the part you want to get rid off is gone.
+The "Clear" button erases the current loop and replaces it with silence.
+The "Save" button will write a flac file containing just the current loop. If you save various stages of the loop, you can then assemble them in any audio editor, or use them later as backing tracks with the -i option. If you did not specific a filename with -o, a timestamp will be used instead.
+
+To save the whole output to a soundfile, set the `save_all` option to True in `config.py`. 
 
 You should use headphones to avoid a feedback catastrophe. Keep in mind that I put this together by trial and error until it worked for me, I know nothing about computers and I'm not responsible if it crashes during a gig.
 

@@ -3,6 +3,8 @@ import PySimpleGUI as sg
 import numpy as np
 import controls
 import config
+import time
+import soundfile as sf
 
 def slider(key, text, default_value, maximum=100):
     '''Generates a standard slider with associated text'''
@@ -57,7 +59,7 @@ def gui():
                  sg.Combo(config.subdiv_list, default_value=1,
                  key='subdiv', font=('Sans',10), size=(8,5)),
                  sg.Text('Beats', key='beats', size=(20,1))],
-                [sg.Button('Undo'), sg.Button('Stop')]
+                [sg.Button('Undo'), sg.Button('Clear'), sg.Button('Save'), sg.Button('Stop')]                
              ]
 
     # Make the main window
@@ -67,7 +69,7 @@ def gui():
     
     # Graph the loop volume
     graph = window['canvas']
-    
+
     while controls.running:
         show_loop(graph)
 
@@ -76,27 +78,37 @@ def gui():
         controls.back_volume = values['back_volume']/50
         controls.loop_volume = values['loop_volume']/50
         controls.feedback = values['feedback']/100
-        
+
         # Parse subdiv value
         if str(values['subdiv']).isdigit() and values['subdiv']!='0':
             controls.subdiv = int(values['subdiv'])
         subdiv_interval = np.round(config.bars*config.signature/controls.subdiv,2)
         window['beats'].update('({0} beats)'.format(subdiv_interval))
-                          
+
         if event=='space:65': # On space bar press
             if controls.input_gain != 0:
                 controls.last_input_gain = controls.input_gain
                 window['input_gain'].update(value=0)
             else:
                 window['input_gain'].update(value=controls.last_input_gain*100)
-                          
+
         if event=='Undo':
             # Restore previous loop state
             controls.loop = np.array(controls.record[-controls.undo_position])
             if controls.undo_position < len(controls.record):
                 controls.undo_position += 1
             print('Undo:', controls.undo_position)
-        
+
+        if event=='Clear':
+            # Empty the buffer
+            controls.loop = np.zeros(np.shape(controls.loop))
+            
+        if event=='Save':
+            loop_filename = (config.output_filename if config.output_filename else str(time.time())) + '_' + str(controls.saved_loops) + '.flac'
+            sf.write(loop_filename, controls.loop, int(controls.samplerate))
+            controls.saved_loops += 1
+            print('Wrote the current loop to', loop_filename)
+
         if event=='Stop':
             controls.running = False
             window.close()

@@ -5,8 +5,10 @@ import config
 running = True
 loop = []
 record = []
+saved_loops = 0
 undo_position = -1
 last_input_gain = config.input_gain
+samplerate = 0 
 
 # Initial values for controllable parameters
 input_gain = config.input_gain

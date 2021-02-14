@@ -56,16 +56,16 @@ def tick(beat_size, volume, length):
            np.exp(-np.arange(beat_size)/length)
     return beat.reshape(-1,1)
     
-def make_metronome(tempo, signature, bars, samplerate):
+def make_metronome(tempo, signature, bars):
     '''Generates a two-channel metronome track, with specified tempo, 
        signature, number of bars.'''
     
     # Prepare the loops
     loop_duration = bars * signature * 60/tempo
-    loop_size = int(samplerate*loop_duration)
+    loop_size = int(controls.samplerate*loop_duration)
 
     # Generate metronome track
-    beat_size = int(60/tempo*samplerate) # in samples
+    beat_size = int(60/tempo*controls.samplerate) # in samples
     metronome = np.zeros((loop_size,2))
 
     for i in np.arange(0,bars*signature).astype(int):

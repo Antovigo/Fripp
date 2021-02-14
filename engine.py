@@ -8,11 +8,11 @@ import config
 import controls
 from functions import *
 
-def sound_processing(backing_track, samplerate):
+def sound_processing(backing_track):
     '''Main component of the looper'''
     # Sound settings
     input_channels = 2 if config.stereo else 1
-    lat_len = int(config.latency/1000 * samplerate)
+    lat_len = int(config.latency/1000 * controls.samplerate)
 
     # Prepare the loop
     controls.loop = np.zeros(np.shape(backing_track)) # Two columns for stereo
@@ -59,7 +59,7 @@ def sound_processing(backing_track, samplerate):
     s.stop()
     
     # Write the recorded data to a sound file
-    if config.output_filename:
+    if config.output_filename and config.save_all:
         record_data = np.vstack(controls.record)
-        sf.write(config.output_filename, record_data, int(samplerate))
-        print('Wrote the sound to', config.output_filename)
+        sf.write(config.output_filename+'.flac', record_data, int(controls.samplerate))
+        print('Wrote the sound to', config.output_filename+'.flac')
