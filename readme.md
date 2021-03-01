@@ -3,7 +3,7 @@
 Named after the musician [Robert Fripp](https://en.wikipedia.org/wiki/Robert_Fripp), who experimented with this kind of things with Brian Eno in pre-computer times, Fripp is a simple audio looper that allows you to build music layer by layer. It is Linux-compatible and does not depend on Jack.
 
 It looks like this:
-![screenshot of Fripp](screenshot.png)
+![screenshot of Fripp](Doc/screenshot.png)
 
 ## Features
 * Fripp uses the `sounddevice` library to handle audio, so it should be cross-platform, although I only tested it on Linux.
