@@ -6,6 +6,7 @@ input_filename = None # Set to None to disable
 # Recording
 output_filename = None # Set to None to disable
 save_all = False # Save the entire session at the end
+save_directory = ~/Documents/Studio/Loops
 
 # I/O parameters
 device = 6 # Run "python -m sounddevice" to find out

@@ -5,6 +5,7 @@ import fripp.controls as controls
 import fripp.config as config
 import time
 import soundfile as sf
+import pathlib
 
 def slider(key, text, default_value, maximum=100):
     '''Generates a standard slider with associated text'''
@@ -104,8 +105,9 @@ def gui():
             controls.loop = np.zeros(np.shape(controls.loop))
             
         if event=='Save':
+            folder = pathlib.Path(config.save_directory)
             loop_filename = (config.output_filename if config.output_filename else str(time.time())) + '_' + str(controls.saved_loops) + '.flac'
-            sf.write(loop_filename, controls.loop, int(controls.samplerate))
+            sf.write(folder/loop_filename, controls.loop, int(controls.samplerate))
             controls.saved_loops += 1
             print('Wrote the current loop to', loop_filename)
 
