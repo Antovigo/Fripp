@@ -19,7 +19,7 @@ metro_ratio = 6 # How much longer is the first beat of a bar
 # Default values for command line parameters
 tempo = 115 # in bpm
 signature = 4 # in beats per bar
-bars = 2 # in bars
+bars = 4 # in bars
 
 # Default values for the live control panel
 input_gain = 40
