@@ -85,7 +85,7 @@ If it's set to 1, the input will be recorded once per loop, as in a regular loop
 
 Press the spacebar to mute/unmute the input.
 
-The `Undo` button will come back to the previous version of the loop. Essentially, just press the undo button until the part you want to get rid off is gone.
+The `Undo` button will come back to the last saved of the loop..
 
 The `Clear` button erases the current loop and replaces it with silence.
 
