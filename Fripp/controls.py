@@ -5,6 +5,7 @@ import fripp.config as config
 running = True
 loop = []
 record = []
+last_save = []
 saved_loops = 0
 undo_position = -1
 last_input_gain = config.input_gain

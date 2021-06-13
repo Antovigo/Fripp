@@ -95,10 +95,8 @@ def gui():
 
         if event=='Undo':
             # Restore previous loop state
-            controls.loop = np.array(controls.record[-controls.undo_position])
-            if controls.undo_position < len(controls.record):
-                controls.undo_position += 1
-            print('Undo:', controls.undo_position)
+            controls.loop = np.array(controls.last_save)
+            print('Restoring the last saved loop')
 
         if event=='Clear':
             # Empty the buffer
@@ -108,6 +106,7 @@ def gui():
             folder = pathlib.Path(config.save_directory)
             loop_filename = (config.output_filename if config.output_filename else str(time.time())) + '_' + str(controls.saved_loops) + '.flac'
             sf.write(folder/loop_filename, controls.loop, int(controls.samplerate))
+            controls.last_save = np.array(controls.loop) # Save for the next undo
             controls.saved_loops += 1
             print('Wrote the current loop to', loop_filename)
 

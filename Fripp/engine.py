@@ -16,6 +16,7 @@ def sound_processing(backing_track):
 
     # Prepare the loop
     controls.loop = np.zeros(np.shape(backing_track)) # Two columns for stereo
+    controls.last_save = np.array(controls.loop) # Copy loop in the undo buffer
     
     # Time-keeping variable
     n = 0
@@ -50,11 +51,10 @@ def sound_processing(backing_track):
         # Keep track of time
         n += config.blocksize
         
-        # Recording for saving and for the undo button
-        if n>loopsize:
+        # Recording for saving
+        if n>loopsize and config.save_all:
             n -= loopsize
             controls.record.append(np.array(controls.loop))
-            controls.undo_position = 1
         
     s.stop()
     
