@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import fripp.config as config
+import config
 
 # Initialize important variables
 running = True

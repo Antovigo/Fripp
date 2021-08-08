@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import PySimpleGUI as sg
 import numpy as np
-import fripp.controls as controls
-import fripp.config as config
+import controls
+import config
 import time
 import soundfile as sf
 import pathlib

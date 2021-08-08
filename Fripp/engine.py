@@ -4,9 +4,9 @@ import numpy as np
 import soundfile as sf
 import time
 
-import fripp.config as config
-import fripp.controls as controls
-from fripp.functions import *
+import config
+import controls
+from functions import *
 
 def sound_processing(backing_track):
     '''Main component of the looper'''

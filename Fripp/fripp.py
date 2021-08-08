@@ -3,11 +3,11 @@ import numpy as np
 import soundfile as sf
 import threading
 
-import fripp.config as config # User configuration
-import fripp.controls as controls # Global variables for GUI control
-from fripp.functions import *
-from fripp.engine import *
-from fripp.gui import *
+import config
+import controls
+from functions import *
+from engine import *
+from gui import *
 
 parse_arguments() # Update parameters using command-line arguments
 

@@ -2,8 +2,10 @@ import numpy as np
 import sounddevice as sd
 import soundfile as sf
 import time
-import fripp.controls as controls
-import fripp.config as config
+
+import controls
+import config
+
 import argparse
 import os
 
