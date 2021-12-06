@@ -8,7 +8,7 @@ It looks like this:
 ## Features
 * Fripp uses the `sounddevice` library to handle audio, so it should be cross-platform, although I only tested it on Linux.
 * AFAIK, it's the only looper that works on Linux and does not depend on Jack. This is the reason why I wrote it, since I didn't want to spend time configuring Jack.
-* Adjust the feedback, so the oldest layers slowly decay over time, just like in [Robert Fripp's setup](https://invidious.tube/watch?v=IVktJ3Ha4AI).
+* Adjust the feedback, so the oldest layers slowly decay over time, just like in [Robert Fripp's setup](https://invidious.fdn.fr/watch?v=IVktJ3Ha4AI).
 * Record to the entire loop, or to any subdivision of it (for example, if you want the thing you're playing to be repeated on every bar). Any subdivision works, so you can experiment with weird polyrhythms.
 * Define the tempo, number of bars and time signature as command-line arguments, or in the config.py file.
 * Generate a metronome track, or use a sound file as a backing track (for example, a drum loop) . It will loop over the file and let you record on top of it. Flac files definitely work. Mp3 may or may not work (I haven't tried).

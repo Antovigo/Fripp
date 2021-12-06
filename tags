@@ -1,0 +1,77 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/hal/Code/Fripp/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	/p5.9.20210905.0/
+Buttons and switches	readme.md	/^### Buttons and switches$/;"	S	section:Fripp""Usage
+Command-line options	readme.md	/^### Command-line options$/;"	S	section:Fripp""Usage
+Features	readme.md	/^## Features$/;"	s	chapter:Fripp
+Fripp	readme.md	/^# Fripp$/;"	c
+Installation	readme.md	/^## Installation$/;"	s	chapter:Fripp
+License	readme.md	/^## License$/;"	s	chapter:Fripp
+Usage	readme.md	/^## Usage$/;"	s	chapter:Fripp
+back_volume	Fripp/config.py	/^back_volume = 30$/;"	v
+back_volume	Fripp/controls.py	/^back_volume = config.back_volume$/;"	v
+bars	Fripp/config.py	/^bars = 4 # in bars$/;"	v
+blocksize	Fripp/config.py	/^blocksize = 512 # I guess this is arbitrary$/;"	v
+broken_line	Fripp/gui.py	/^def broken_line(graph, values):$/;"	f
+device	Fripp/config.py	/^device = 6 # Run "python -m sounddevice" to find out$/;"	v
+display_color	Fripp/config.py	/^display_color = 'white'$/;"	v
+display_height	Fripp/config.py	/^display_height = 100$/;"	v
+display_width	Fripp/config.py	/^display_width = 490$/;"	v
+feedback	Fripp/config.py	/^feedback = 100$/;"	v
+feedback	Fripp/controls.py	/^feedback = config.feedback$/;"	v
+gui	Fripp/gui.py	/^def gui():$/;"	f
+input_filename	Fripp/config.py	/^input_filename = None # Set to None to disable$/;"	v
+input_gain	Fripp/config.py	/^input_gain = 50$/;"	v
+input_gain	Fripp/controls.py	/^input_gain = config.input_gain$/;"	v
+last_input_gain	Fripp/controls.py	/^last_input_gain = config.input_gain$/;"	v
+last_save	Fripp/controls.py	/^last_save = []$/;"	v
+latency	Fripp/config.py	/^latency = 0 # in milliseconds$/;"	v
+loop	Fripp/controls.py	/^loop = []$/;"	v
+loop_volume	Fripp/config.py	/^loop_volume = 50$/;"	v
+loop_volume	Fripp/controls.py	/^loop_volume = config.loop_volume$/;"	v
+make_backing_track	Fripp/functions.py	/^def make_backing_track(filename):$/;"	f
+make_metronome	Fripp/functions.py	/^def make_metronome(tempo, signature, bars):$/;"	f
+metro_len	Fripp/config.py	/^metro_len = 60 # Duration of a metronome click$/;"	v
+metro_ratio	Fripp/config.py	/^metro_ratio = 6 # How much longer is the first beat of a bar$/;"	v
+np	Fripp/engine.py	/^import numpy as np$/;"	I	nameref:module:numpy
+np	Fripp/fripp.py	/^import numpy as np$/;"	I	nameref:module:numpy
+np	Fripp/functions.py	/^import numpy as np$/;"	I	nameref:module:numpy
+np	Fripp/gui.py	/^import numpy as np$/;"	I	nameref:module:numpy
+output_filename	Fripp/config.py	/^output_filename = None # Set to None to disable$/;"	v
+parse_arguments	Fripp/functions.py	/^def parse_arguments():$/;"	f
+read_from_loop	Fripp/functions.py	/^def read_from_loop(loop, backing_track, slice_index):$/;"	f
+read_from_mic_mono	Fripp/functions.py	/^def read_from_mic_mono(s, blocksize, pan):$/;"	f
+read_from_mic_stereo	Fripp/functions.py	/^def read_from_mic_stereo(s, blocksize):$/;"	f
+record	Fripp/controls.py	/^record = []$/;"	v
+running	Fripp/controls.py	/^running = True$/;"	v
+samplerate	Fripp/controls.py	/^samplerate = 0 $/;"	v
+save_all	Fripp/config.py	/^save_all = False # Save the entire session at the end$/;"	v
+save_directory	Fripp/config.py	/^save_directory = "\/home\/hal\/Documents\/Studio\/Loops" # Should be full path, ~ does not work$/;"	v
+saved_loops	Fripp/controls.py	/^saved_loops = 0$/;"	v
+sd	Fripp/engine.py	/^import sounddevice as sd$/;"	I	nameref:module:sounddevice
+sd	Fripp/functions.py	/^import sounddevice as sd$/;"	I	nameref:module:sounddevice
+sf	Fripp/engine.py	/^import soundfile as sf$/;"	I	nameref:module:soundfile
+sf	Fripp/fripp.py	/^import soundfile as sf$/;"	I	nameref:module:soundfile
+sf	Fripp/functions.py	/^import soundfile as sf$/;"	I	nameref:module:soundfile
+sf	Fripp/gui.py	/^import soundfile as sf$/;"	I	nameref:module:soundfile
+sg	Fripp/gui.py	/^import PySimpleGUI as sg$/;"	I	nameref:module:PySimpleGUI
+show_loop	Fripp/gui.py	/^def show_loop(graph, bins=75, norm=False):$/;"	f
+signature	Fripp/config.py	/^signature = 4 # in beats per bar$/;"	v
+sine	Fripp/functions.py	/^def sine(t, amplitude, frequency):$/;"	f
+slider	Fripp/gui.py	/^def slider(key, text, default_value, maximum=100):$/;"	f
+sound_processing	Fripp/engine.py	/^def sound_processing():$/;"	f
+stereo	Fripp/config.py	/^stereo = True # Is your input stereo or mono$/;"	v
+subdiv	Fripp/config.py	/^subdiv = 1$/;"	v
+subdiv	Fripp/controls.py	/^subdiv = config.subdiv$/;"	v
+subdiv_list	Fripp/config.py	/^subdiv_list = [1, 2, 3, 4, 8]$/;"	v
+tempo	Fripp/config.py	/^tempo = 115 # in bpm$/;"	v
+tick	Fripp/functions.py	/^def tick(beat_size, volume, length):$/;"	f
+undo_position	Fripp/controls.py	/^undo_position = -1$/;"	v
