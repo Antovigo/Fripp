@@ -8,31 +8,31 @@ import config
 import controls
 from functions import *
 
-def sound_processing(backing_track):
+def sound_processing():
     '''Main component of the looper'''
     # Sound settings
     input_channels = 2 if config.stereo else 1
     lat_len = int(config.latency/1000 * controls.samplerate)
 
     # Prepare the loop
-    controls.loop = np.zeros(np.shape(backing_track)) # Two columns for stereo
+    controls.loop = np.zeros(np.shape(controls.backing_track)) # Two columns for stereo
     controls.last_save = np.array(controls.loop) # Copy loop in the undo buffer
     
     # Time-keeping variable
     n = 0
     
     # Start the looping stream
-    s = sd.Stream(channels=(input_channels,2), blocksize=config.blocksize)
+    s = sd.Stream(channels=(input_channels,2), blocksize=config.blocksize, samplerate=controls.samplerate)
     s.start()
     time.sleep(1) # Prevent the initial cracking sound
 
     while controls.running:    
         # Calculate indices of the slice
-        loopsize = np.size(backing_track,0)
+        loopsize = np.size(controls.backing_track,0)
         slice_index = np.arange(n,n+config.blocksize) % loopsize
         
         # Write output to speakers
-        outdata = read_from_loop(controls.loop, backing_track, slice_index)
+        outdata = read_from_loop(controls.loop, controls.backing_track, slice_index)
         s.write(outdata)
         
         # Write indata to the loop

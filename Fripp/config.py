@@ -22,10 +22,10 @@ signature = 4 # in beats per bar
 bars = 4 # in bars
 
 # Default values for the live control panel
-input_gain = 40
+input_gain = 50
 back_volume = 30
 loop_volume = 50
-feedback = 95
+feedback = 100
 subdiv = 1
 subdiv_list = [1, 2, 3, 4, 8]
 

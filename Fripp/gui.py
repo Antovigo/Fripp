@@ -60,7 +60,9 @@ def gui():
                  sg.Combo(config.subdiv_list, default_value=1,
                  key='subdiv', font=('Sans',10), size=(8,5)),
                  sg.Text('Beats', key='beats', size=(20,1))],
-                [sg.Button('Undo'), sg.Button('Clear'), sg.Button('Save'), sg.Button('Stop')]                
+                [sg.Button('Undo'), sg.Button('Clear'), sg.Button('Save'), sg.Button('Stop'),
+                    sg.Text('Name'), sg.InputText(config.output_filename, key='filename', size=(13,2))
+                ]                
              ]
 
     # Make the main window
@@ -72,9 +74,16 @@ def gui():
     graph = window['canvas']
 
     while controls.running:
+        event, values = window.read(timeout=100)
+
+        if event=='Stop' or event==sg.WINDOW_CLOSED:
+            print('Goodbye!')
+            controls.running = False
+            window.close()
+            break
+
         show_loop(graph)
 
-        event, values = window.read(timeout=100)
         controls.input_gain = values['input_gain']/50
         controls.back_volume = values['back_volume']/50
         controls.loop_volume = values['loop_volume']/50
@@ -104,13 +113,14 @@ def gui():
             
         if event=='Save':
             folder = pathlib.Path(config.save_directory)
-            loop_filename = (config.output_filename if config.output_filename else str(time.time())) + '_' + str(controls.saved_loops) + '.flac'
-            sf.write(folder/loop_filename, controls.loop, int(controls.samplerate))
+            filename = values['filename'] + '_' + str(controls.saved_loops) + '.flac'
+
+            if config.input_filename:
+                to_write = controls.loop + controls.backing_track
+            else:
+                to_write = controls.loop 
+
+            sf.write(folder/filename, to_write, int(controls.samplerate))
             controls.last_save = np.array(controls.loop) # Save for the next undo
             controls.saved_loops += 1
-            print('Wrote the current loop to', loop_filename)
-
-        if event=='Stop':
-            controls.running = False
-            window.close()
-            break
+            print('Wrote the current loop to', filename)

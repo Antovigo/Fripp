@@ -2,6 +2,7 @@
 import numpy as np
 import soundfile as sf
 import threading
+import time
 
 import config
 import controls
@@ -17,11 +18,16 @@ controls.samplerate = sd.query_devices(config.device, 'output')['default_sampler
 # Prepare the backing track
 if config.input_filename:
     # Backing track from sound file
-    backing_track = make_backing_track(filename=config.input_filename)
+    controls.backing_track = make_backing_track(filename=config.input_filename)
 else:
     # Synthesize a metronome track
-    backing_track = make_metronome(config.tempo, config.signature, config.bars)
+    controls.backing_track = make_metronome(config.tempo, config.signature, config.bars)
+
+# Prepare the filenames
+if not config.output_filename:
+    config.output_filename = str(round(time.time()))
 
 # Start the sound engine
-threading.Thread(target=gui).start()
-threading.Thread(target=sound_processing, args=(backing_track,)).start()
+# threading.Thread(target=gui).start()
+threading.Thread(target=sound_processing).start()
+gui()
