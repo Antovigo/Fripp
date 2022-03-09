@@ -37,10 +37,12 @@ latency	Fripp/config.py	/^latency = 0 # in milliseconds$/;"	v
 loop	Fripp/controls.py	/^loop = []$/;"	v
 loop_volume	Fripp/config.py	/^loop_volume = 50$/;"	v
 loop_volume	Fripp/controls.py	/^loop_volume = config.loop_volume$/;"	v
+m	Fripp/alsa_test.py	/^m = alsaaudio.Mixer('Capture')$/;"	v
 make_backing_track	Fripp/functions.py	/^def make_backing_track(filename):$/;"	f
 make_metronome	Fripp/functions.py	/^def make_metronome(tempo, signature, bars):$/;"	f
 metro_len	Fripp/config.py	/^metro_len = 60 # Duration of a metronome click$/;"	v
 metro_ratio	Fripp/config.py	/^metro_ratio = 6 # How much longer is the first beat of a bar$/;"	v
+mixers	Fripp/alsa_test.py	/^mixers = {mixer:alsaaudio.Mixer(mixer) for mixer in alsaaudio.mixers()}$/;"	v
 np	Fripp/engine.py	/^import numpy as np$/;"	I	nameref:module:numpy
 np	Fripp/fripp.py	/^import numpy as np$/;"	I	nameref:module:numpy
 np	Fripp/functions.py	/^import numpy as np$/;"	I	nameref:module:numpy

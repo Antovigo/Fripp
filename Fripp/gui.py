@@ -3,9 +3,9 @@ import PySimpleGUI as sg
 import numpy as np
 import controls
 import config
-import time
 import soundfile as sf
 import pathlib
+import alsaaudio
 
 def slider(key, text, default_value, maximum=100):
     '''Generates a standard slider with associated text'''
@@ -48,22 +48,46 @@ def gui():
     '''Construct the control panel'''
     sg.theme('Default 1') # LightGray2 is good too
 
+    # Find the mixers
+    mixer_names = [m for m in alsaaudio.mixers() if alsaaudio.Mixer(m).getvolume()] 
+    mixers = {mixer:alsaaudio.Mixer(mixer) 
+              for mixer in mixer_names}
+
+    mixers_sliders = [slider(i, i, mixers[i].getvolume()[0]) 
+                      for i in mixer_names]
+
+    mixer_area = [mixers_sliders]
+
     # All the stuff inside your window.
-    layout = [  [sg.Graph(canvas_size=(config.display_width, config.display_height),
-                          graph_bottom_left=(0,0), graph_top_right=(100,100),
-                          key='canvas')],
-                slider('input_gain', 'Input gain', controls.input_gain),
+    graph_area = [[sg.Graph(
+        canvas_size=(
+                    config.display_width,
+                    config.display_height
+                    ),
+                    graph_bottom_left=(0,0),
+                    graph_top_right=(100,100),
+                    key='canvas')]]
+
+    control_area = [[slider('input_gain', 'Input gain', controls.input_gain),
                 slider('back_volume', 'Back volume', controls.back_volume),
                 slider('loop_volume', 'Loop volume', controls.loop_volume),
                 slider('feedback', 'Feedback', controls.feedback),
                 [sg.Text('Subdivide', size=(14,2), pad=(5,(15,0))), 
                  sg.Combo(config.subdiv_list, default_value=1,
                  key='subdiv', font=('Sans',10), size=(8,5)),
-                 sg.Text('Beats', key='beats', size=(20,1))],
-                [sg.Button('Undo'), sg.Button('Clear'), sg.Button('Save'), sg.Button('Stop'),
-                    sg.Text('Name'), sg.InputText(config.output_filename, key='filename', size=(13,2))
-                ]                
-             ]
+                 sg.Text('Beats', key='beats', size=(20,1))]]]
+
+    buttons_area = [[sg.Button('Undo'), 
+                    sg.Button('Clear'), 
+                    sg.Button('Save'), 
+                    sg.Button('Stop'),
+                    sg.Text('Name'), 
+                    sg.InputText(
+                        config.output_filename, key='filename', size=(13,2)
+                        )
+                    ]]           
+
+    layout = graph_area + mixer_area + control_area + buttons_area
 
     # Make the main window
     window = sg.Window('Fripp', layout, 
@@ -82,12 +106,19 @@ def gui():
             window.close()
             break
 
+        # Update graph
         show_loop(graph)
 
+        # Update controls
         controls.input_gain = values['input_gain']/50
         controls.back_volume = values['back_volume']/50
         controls.loop_volume = values['loop_volume']/50
         controls.feedback = values['feedback']/100
+
+        # Update sound settings
+        for m in mixer_names:
+            mixers[m].setvolume(int(values[m]))
+            mixers[m].setmute(False)
 
         # Parse subdiv value
         if str(values['subdiv']).isdigit() and values['subdiv']!='0':
