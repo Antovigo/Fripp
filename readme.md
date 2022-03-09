@@ -1,3 +1,6 @@
+[this used to be cross-platform, but I included Alsa volume control so you can adjust the monitor volume from Fripp, so it's now Linux only. For other platforms, go back to the previous version: https://github.com/Antovigo/Fripp/tree/b0bc546f9a4e44c2b0098d6a028d4973cc8b2c3b]
+
+
 # Fripp
 
 Named after the musician [Robert Fripp](https://en.wikipedia.org/wiki/Robert_Fripp), who experimented with this kind of things with Brian Eno in pre-computer times, Fripp is a simple audio looper that allows you to build music layer by layer. It is Linux-compatible and does not depend on Jack.
